@@ -1,0 +1,23 @@
+public class Clear_Range_of_Bits {
+    public static int clearInRange(int n, int i, int j) {
+        // Step 1: Create a bitmask to clear bits from index j+1 to the most significant bit
+        int a = (-1) << (j + 1);   // Alternatively, you can use (~0) << (j + 1);
+
+        // Step 2: Create a bitmask to set all bits from index 0 to index i to 1
+        int b = (1 << i) - 1;
+
+        // Step 3: Combine the two bitmasks using bitwise OR operation to create the final bitmask
+        int c = a | b;
+
+        // Step 4: Perform a bitwise AND operation between the original number n and the negation of the final bitmask
+        // This operation clears all bits in the range [i, j] while preserving other bits
+        return n & c;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(clearInRange(10, 2, 4));   // Output: 8
+        System.out.println(clearInRange(100, 3, 6));  // Output: 4
+        System.out.println(clearInRange(90, 1, 4));   // Output: 64
+    }
+}
