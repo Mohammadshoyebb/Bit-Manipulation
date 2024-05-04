@@ -1,0 +1,41 @@
+/**
+ * Fast Exponentiation Algorithm
+ * 
+ * This algorithm efficiently calculates the power of a number using bitwise operations.
+ * It reduces the number of multiplications required by exploiting the binary representation
+ * of the exponent.
+ */
+public class FastExponentiation {
+
+    /**
+     * Calculates the power of a number using fast exponentiation.
+     * 
+     * @param a the base
+     * @param n the exponent
+     * @return the result of a^n
+     */
+    public static int fastExp(int a, int n) {
+        int ans = 1;
+
+        // Iterate through the bits of the exponent
+        while (n > 0) {
+            // If the current bit is 1, multiply the result by a
+            if ((n & 1) == 1) {
+                ans *= a;
+            }
+            // Square the base for the next iteration
+            a *= a;
+            // Shift the exponent to the right (equivalent to dividing by 2)
+            n >>= 1;
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(fastExp(3, 5));  // Output: 243
+        System.out.println(fastExp(5, 5));  // Output: 3125
+        System.out.println(fastExp(7, 12)); // Output: 13841287201
+        System.out.println(fastExp(6, 7));  // Output: 279936
+    }
+}
